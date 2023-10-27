@@ -49,7 +49,7 @@ class TemplateCollection
             $json->totalCount,
             $json->page,
             $json->limit,
-            $json->sort,
+            $json->sort
         );
     }
 }

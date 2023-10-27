@@ -50,7 +50,7 @@ class Template
             $json->createdOn,
             $json->updatedOn,
             $json->bodyHtml ?? "",
-            $json->bodyText ?? "",
+            $json->bodyText ?? ""
         );
     }
 }
