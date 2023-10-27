@@ -1,0 +1,20 @@
+{
+    "name": "bernier154/php-cyberimpact",
+    "description": "PHP Wrapper for the cyberimpact v4 api",
+    "type": "library",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "bernier154\\PhpCyberimpact\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Antoine Bernier",
+            "email": "dev@antoinebernier.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "7.0"
+    }
+}
