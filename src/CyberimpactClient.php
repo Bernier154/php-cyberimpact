@@ -21,7 +21,6 @@ class CyberimpactClient
      * Create an instance of {CyberimpactClient}
      *
      * @param  string $apiToken The Cyberimpact api token
-     * @param  boolean $throwRetrieve if true, the retreiveById api calls (response 404), will throw and exception.
      * @return void
      */
     public function __construct(string $apiToken)

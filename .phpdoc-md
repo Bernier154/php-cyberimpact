@@ -1,0 +1,12 @@
+<?php
+return (object)[
+    'rootNamespace' => 'bernier154\PhpCyberimpact', 
+    'destDirectory' => 'docs',
+    'format' => 'github',
+    'classes' => array_merge(
+        ['bernier154\PhpCyberimpact\CyberimpactClient'],
+        array_map(fn($path)=>'bernier154\PhpCyberimpact\Collections\\'.basename($path,'.php'),glob("./src/Collections/*.php")),
+        array_map(fn($path)=>'bernier154\PhpCyberimpact\Exceptions\\'.basename($path,'.php'),glob("./src/Exceptions/*.php")),
+        array_map(fn($path)=>'bernier154\PhpCyberimpact\Objects\\'.basename($path,'.php'),glob("./src/Objects/*.php"))
+    )
+];
