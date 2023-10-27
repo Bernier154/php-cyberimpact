@@ -1,8 +1,12 @@
 {
     "name": "bernier154/php-cyberimpact",
     "description": "PHP Wrapper for the cyberimpact v4 api",
+    "version": "1.0.3",
     "type": "library",
-    "license": "mit",
+    "license": "MIT",
+    "support":{
+        "docs":"https://github.com/Bernier154/php-cyberimpact/tree/main/docs"
+    },
     "autoload": {
         "psr-4": {
             "bernier154\\PhpCyberimpact\\": "src/"
