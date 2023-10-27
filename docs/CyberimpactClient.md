@@ -15,8 +15,11 @@
 |[addGroup](#cyberimpactclientaddgroup)|Add a new static group in your account.|
 |[addGroupsToMember](#cyberimpactclientaddgroupstomember)|Make the specified member part of the specified groups.|
 |[addMember](#cyberimpactclientaddmember)|Add a new member in your account. If you need the member to confirm its subscription, it is recommended that you use optins, If you use this method in an online form, it is strongly recommended to add a CAPTCHA to it in order to avoid abuse, Warning: This method is throttled. If you wish to use it for synchronization purposes between two systems, please contact us to know how you can avoid being throttled. If you need to add multiple members at once, it is recommended that you use batches.|
+|[createAddMemberBatch](#cyberimpactclientcreateaddmemberbatch)|Add members in batch If a member already exists, it is updated with the new information provided in the batch.|
+|[createDeleteMemberBatch](#cyberimpactclientcreatedeletememberbatch)|Delete members in batch|
 |[createMailing](#cyberimpactclientcreatemailing)|Create a new mailing scheduled to be sent.|
 |[createTemplate](#cyberimpactclientcreatetemplate)|Create a new template.|
+|[createUnsubscribeBatch](#cyberimpactclientcreateunsubscribebatch)|Unsubscribe members in batch|
 |[deleteGroup](#cyberimpactclientdeletegroup)|Delete a specific group based on its id.|
 |[deleteMember](#cyberimpactclientdeletemember)|Delete a specific member based on its key.|
 |[deleteTemplate](#cyberimpactclientdeletetemplate)|Delete a specific template based on its id.|
@@ -31,6 +34,7 @@
 |[replaceMember](#cyberimpactclientreplacemember)|Modifiy the representation of a member so that it become completely like specified. Unspecified attributes will be resetted to their default empty values.|
 |[replaceMemberGroups](#cyberimpactclientreplacemembergroups)|Replace completely the list of groups that a member is part of by the ones specified.|
 |[replaceTemplate](#cyberimpactclientreplacetemplate)|Modify the representation of a template so that it become completely like specified. Unspecified attributes will be resetted to their default empty values.|
+|[retrieveBatch](#cyberimpactclientretrievebatch)||
 |[retrieveBouncedMembers](#cyberimpactclientretrievebouncedmembers)|Retrieve a paginated list of members for which we received a hard bounce for the last mailing we sent to them.|
 |[retrieveGroup](#cyberimpactclientretrievegroup)|Retrieve a specific group based on its id.|
 |[retrieveGroupMembers](#cyberimpactclientretrievegroupmembers)|retrieveGroupMembers|
@@ -215,6 +219,65 @@ Add a new member in your account. If you need the member to confirm its subscrip
 <hr />
 
 
+### CyberimpactClient::createAddMemberBatch  
+
+**Description**
+
+```php
+public createAddMemberBatch (array $members, string $relationType, string $defaultConsentDate, string $defaultConsentProof)
+```
+
+Add members in batch If a member already exists, it is updated with the new information provided in the batch. 
+
+If a field is empty in the batch and there is already data present for that field for a member in your account, we keep the data you already have for that member.  
+If you specifically want to empty a field, provide the special string `__EMPTY__` in your batch to clear that field  
+All submitted members will be added to the groups specified in the batch (if they are not already in). If they were already in other groups, they will stay in their previous groups in addition to being added to the new ones. 
+
+**Parameters**
+
+* `(array) $members`
+* `(string) $relationType`
+: Values : express-consent, active-clients, information-request, business-card, web-contacts, purchased-list, contest-participants, mixed-list, inactive-clients, association-members, employees, partners  
+* `(string) $defaultConsentDate`
+* `(string) $defaultConsentProof`
+
+**Return Values**
+
+`\BatchAddMember`
+
+
+
+
+<hr />
+
+
+### CyberimpactClient::createDeleteMemberBatch  
+
+**Description**
+
+```php
+public createDeleteMemberBatch (array $ids)
+```
+
+Delete members in batch 
+
+ 
+
+**Parameters**
+
+* `(array) $ids`
+: ids or email of the members to unsubscribe  
+
+**Return Values**
+
+`\BatchDeleteMember`
+
+
+
+
+<hr />
+
+
 ### CyberimpactClient::createMailing  
 
 **Description**
@@ -288,6 +351,33 @@ Create a new template.
 **Return Values**
 
 `\Template`
+
+
+
+
+<hr />
+
+
+### CyberimpactClient::createUnsubscribeBatch  
+
+**Description**
+
+```php
+public createUnsubscribeBatch (array $ids)
+```
+
+Unsubscribe members in batch 
+
+ 
+
+**Parameters**
+
+* `(array) $ids`
+: ids or email of the members to unsubscribe  
+
+**Return Values**
+
+`\BatchUnsubscribe`
 
 
 
@@ -752,6 +842,30 @@ Modify the representation of a template so that it become completely like specif
 `\Template`
 
 
+
+
+<hr />
+
+
+### CyberimpactClient::retrieveBatch  
+
+**Description**
+
+```php
+ retrieveBatch (void)
+```
+
+ 
+
+ 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`void`
 
 
 <hr />

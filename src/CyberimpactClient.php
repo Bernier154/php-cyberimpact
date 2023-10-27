@@ -2,6 +2,7 @@
 
 namespace bernier154\PhpCyberimpact;
 
+use bernier154\PhpCyberimpact\ApiRequests\BatchRequests;
 use bernier154\PhpCyberimpact\ApiRequests\GroupRequests;
 use bernier154\PhpCyberimpact\ApiRequests\MailingRequests;
 use bernier154\PhpCyberimpact\ApiRequests\MemberRequests;
@@ -13,7 +14,7 @@ use GuzzleHttp\Client;
 
 class CyberimpactClient
 {
-    use PingRequest, TokenRequest, GroupRequests, MemberRequests, MailingRequests, TemplateRequests;
+    use PingRequest, TokenRequest, GroupRequests, MemberRequests, MailingRequests, TemplateRequests, BatchRequests;
     const CYBERIMPACT_API_URL = 'https://api.cyberimpact.com/';
     private $apiToken;
 
