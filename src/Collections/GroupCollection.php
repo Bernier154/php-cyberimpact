@@ -45,10 +45,10 @@ class GroupCollection
     {
         return new self(
             array_map(Group::class . '::fromJSON', $json->groups),
-            $json->totalCount,
-            $json->page,
-            $json->limit,
-            $json->sort,
+            $json->totalCount ?? count($json->groups),
+            $json->page ?? 0,
+            $json->limit ?? 0,
+            $json->sort ?? '',
         );
     }
 }

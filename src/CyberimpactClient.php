@@ -3,16 +3,18 @@
 namespace bernier154\PhpCyberimpact;
 
 use bernier154\PhpCyberimpact\ApiRequests\GroupRequests;
+use bernier154\PhpCyberimpact\ApiRequests\MailingRequests;
+use bernier154\PhpCyberimpact\ApiRequests\MemberRequests;
 use bernier154\PhpCyberimpact\ApiRequests\PingRequest;
+use bernier154\PhpCyberimpact\ApiRequests\TemplateRequests;
 use bernier154\PhpCyberimpact\ApiRequests\TokenRequest;
 use bernier154\PhpCyberimpact\Exceptions\ApiException;
 use GuzzleHttp\Client;
 
 class CyberimpactClient
 {
-    use PingRequest, TokenRequest, GroupRequests;
+    use PingRequest, TokenRequest, GroupRequests, MemberRequests, MailingRequests, TemplateRequests;
     const CYBERIMPACT_API_URL = 'https://api.cyberimpact.com/';
-    private $throwRetrieve = false;
     private $apiToken;
 
     /**
@@ -22,10 +24,9 @@ class CyberimpactClient
      * @param  boolean $throwRetrieve if true, the retreiveById api calls (response 404), will throw and exception.
      * @return void
      */
-    public function __construct(string $apiToken, $throwRetrieve = false)
+    public function __construct(string $apiToken)
     {
         $this->apiToken = $apiToken;
-        $this->throwRetrieve = $throwRetrieve;
     }
 
     /**

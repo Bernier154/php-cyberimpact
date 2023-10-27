@@ -28,24 +28,24 @@ class Member
     public $customFields;
 
     public function __construct(
-        int $id,
-        string $firstname,
-        string $lastname,
-        string $company,
-        string $email,
-        string $gender,
-        string $language,
-        string $joinedOn,
-        string $updatedOn,
-        string $consentType,
-        string $postalCode,
-        string $country,
-        string $note,
-        string $birthdate,
-        string $mailingsReceived,
-        string $mailingsOpened,
-        string $mailingsClicked,
-        array $customFields
+        int $id = null,
+        string $firstname = "",
+        string $lastname = "",
+        string $company = "",
+        string $email = "",
+        string $gender = "",
+        string $language = "",
+        string $joinedOn = "",
+        string $updatedOn = "",
+        string $consentType = "",
+        string $postalCode = "",
+        string $country = "",
+        string $note = "",
+        string $birthdate = "",
+        int $mailingsReceived = 0,
+        int $mailingsOpened = 0,
+        int $mailingsClicked = 0,
+        array $customFields = []
     ) {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -76,7 +76,7 @@ class Member
     static function fromJSON($json)
     {
         return new self(
-            $json->id,
+            $json->id ?? null,
             $json->firstname,
             $json->lastname,
             $json->company,
