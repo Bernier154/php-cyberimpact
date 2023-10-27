@@ -1,7 +1,6 @@
 {
     "name": "bernier154/php-cyberimpact",
     "description": "PHP Wrapper for the cyberimpact v4 api",
-    "version": "1.0.4",
     "type": "library",
     "license": "MIT",
     "support":{
