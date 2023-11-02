@@ -48,8 +48,8 @@ class BatchAddMember
             $json->batchJson,
             $json->createdOn,
             $json->status,
-            $json->result,
-            $json->successes
+            $json->result ?? null,
+            $json->successe ?? []
         );
     }
 }
