@@ -21,6 +21,7 @@
         "guzzlehttp/guzzle": "7.0"
     },
     "require-dev": {
-        "clean/phpdoc-md": "^0.19.3"
+        "clean/phpdoc-md": "^0.19.3",
+        "phpunit/phpunit": "^9.6"
     }
 }

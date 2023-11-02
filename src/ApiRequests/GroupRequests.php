@@ -16,14 +16,21 @@ trait GroupRequests
      * @param  int $limit The amount of results per page (max: 10 000)
      * @param  string $sort In which order should the results be returned.
      *                      Possible values: group_asc , group_desc , nbmember_asc , nbmember_desc , type_asc , type_desc , nbnewsletter_asc , nbnewsletter_desc , date_asc , date_desc . 
-     * @return void
+     * @return GroupCollection
      */
-    public function retrieveGroups($page = 1, $limit = 20, $sort = "")
+    public function retrieveGroups($args = [])
     {
+
+        $args = $this->_defaultArgs($args, [
+            "page" => 1,
+            "limit" => 20,
+            "sort" => ""
+        ]);
+
         $apiResponse = $this->_request('GET', 'groups', [
-            'page' => $page,
-            'limit' => $limit,
-            'sort' => $sort,
+            'page' => $args['page'],
+            'limit' => $args['limit'],
+            'sort' => $args['sort'],
         ]);
         return GroupCollection::fromJSON($apiResponse);
     }
@@ -51,26 +58,36 @@ trait GroupRequests
      * retrieveGroupMembers
      *
      * @param  int $id The group's numerical Id
-     * @param  int $page The page of results to view.
-     * @param  int $limit he amount of results per page (max: 10 000)
-     * @param  string $sort In which order should the results be returned.
+     * @param  int $args[page] The page of results to view.
+     * @param  int $args[limit] he amount of results per page (max: 10 000)
+     * @param  string $args[sort] In which order should the results be returned.
      *                      Possible values: email_asc , email_desc , language_asc , language_desc , fullname_asc , fullname_desc , date_asc , date_desc , consent_type_asc , consent_type_desc , consent_date_asc , consent_date_desc , updated_asc , updated_desc . 
-     * @param  string $joinedOnFrom Date (start of the day) from which members have been added in the account (format: yyyy-mm-dd)
-     * @param  string $joinedOnTo Date (end of the day) to which members have been added in the account (format: yyyy-mm-dd)
-     * @param  string $updatedOnFrom Date (start of the day) from which members have been last updated in the account (format: yyyy-mm-dd)
-     * @param  string $updatedOnTo Date (end of the day) to which members have been last updated in the account (format: yyyy-mm-dd)
+     * @param  string $args[joinedOnFrom] Date (start of the day) from which members have been added in the account (format: yyyy-mm-dd)
+     * @param  string $args[joinedOnTo] Date (end of the day) to which members have been added in the account (format: yyyy-mm-dd)
+     * @param  string $args[updatedOnFrom] Date (start of the day) from which members have been last updated in the account (format: yyyy-mm-dd)
+     * @param  string $args[updatedOnTo] Date (end of the day) to which members have been last updated in the account (format: yyyy-mm-dd)
      * @return void
      */
-    public function retrieveGroupMembers($id, $page = 1, $limit = 20, $sort = "", $joinedOnFrom = "", $joinedOnTo = "", $updatedOnFrom = "", $updatedOnTo = "")
+    public function retrieveGroupMembers($id, $args)
     {
+        $args = $this->_defaultArgs($args, [
+            'page' => 1,
+            'limit' => 20,
+            'sort' => "",
+            'joinedOnFrom' => "",
+            'joinedOnTo' => "",
+            'updatedOnFrom' => "",
+            'updatedOnTo' => "",
+        ]);
+
         $apiResponse = $this->_request('GET', "groups/$id/members", [
-            'page' => $page,
-            'limit' => $limit,
-            'sort' => $sort,
-            'joinedOnFrom' => $joinedOnFrom,
-            'joinedOnTo' => $joinedOnTo,
-            'updatedOnFrom' => $updatedOnFrom,
-            'updatedOnTo' => $updatedOnTo
+            'page' => $args['page'],
+            'limit' => $args['limit'],
+            'sort' => $args['sort'],
+            'joinedOnFrom' => $args['joinedOnFrom'],
+            'joinedOnTo' => $args['joinedOnTo'],
+            'updatedOnFrom' => $args['updatedOnFrom'],
+            'updatedOnTo' => $args['updatedOnTo']
         ]);
         return MemberCollection::fromJSON($apiResponse);
     }
@@ -81,7 +98,7 @@ trait GroupRequests
      * @param  int $id The group's numerical id
      * @return object An object containing a prop [members] contiaining ids 
      */
-    public function removeAllGroupMembers(int $id)
+    public function removeAllGroupMembers($id)
     {
         $apiResponse = $this->_request('DELETE', "groups/$id/members");
         return $apiResponse;
@@ -94,11 +111,19 @@ trait GroupRequests
      * @param  bool $isPublic Should the new group be a public group or not. See our documentation for the difference between the two types: http://support.cyberimpact.com/articles/63?l=en_ca#publicvsprivategroup
      * @return Group The newly created group
      */
-    public function addGroup($title,  $isPublic = true)
+    public function addGroup($args)
     {
+        $args = $this->_defaultArgs($args, [
+            "title" => '',
+            "isPublic" => true
+        ], [
+            'title' => 'required|string',
+            'isPublic' => 'bool'
+        ]);
+
         $apiResponse = $this->_request('POST', "groups", [
-            "title" => $title,
-            "isPublic" => $isPublic,
+            "title" => $args['title'],
+            "isPublic" => $args['isPublic'],
         ]);
         return Group::fromJSON($apiResponse);
     }
@@ -110,11 +135,19 @@ trait GroupRequests
      * @param  bool $isPublic Should the group be a public group or not. See our documentation for the difference between the two types: http://support.cyberimpact.com/articles/63?l=en_ca#publicvsprivategroup
      * @return Group The modified group
      */
-    public function replaceGroup($id,  $title,  $isPublic = true)
+    public function replaceGroup($id, $args)
     {
+        $args = $this->_defaultArgs($args, [
+            "title" => '',
+            "isPublic" => true
+        ], [
+            'title' => 'required|string',
+            'isPublic' => 'bool'
+        ]);
+
         $apiResponse = $this->_request('PUT', "groups/$id", [
-            "title" => $title,
-            "isPublic" => $isPublic,
+            "title" => $args['title'],
+            "isPublic" => $args['isPublic'],
         ]);
         return Group::fromJSON($apiResponse);
     }
@@ -126,12 +159,21 @@ trait GroupRequests
      * @param  bool $isPublic Should the group be a public group or not. See our documentation for the difference between the two types: http://support.cyberimpact.com/articles/63?l=en_ca#publicvsprivategroup
      * @return Group The modified group
      */
-    public function editGroup($id,  $title,  $isPublic = true)
+    public function editGroup($id, $args)
     {
-        $apiResponse = $this->_request('PATCH', "groups/$id", [
-            "title" => $title,
-            "isPublic" => $isPublic,
+        $args = $this->_defaultArgs($args, [
+            "title" => '',
+            "isPublic" => true
+        ], [
+            'title' => 'required|string',
+            'isPublic' => 'bool'
         ]);
+
+        $apiResponse = $this->_request('PATCH', "groups/$id", [
+            "title" => $args['title'],
+            "isPublic" => $args['isPublic'],
+        ]);
+
         return Group::fromJSON($apiResponse);
     }
 

@@ -174,6 +174,8 @@ trait MemberRequests
      */
     public function addMember($email,  $gender = "",  $groups = "",  $firstname = "",  $lastname = "",  $company = "",  $language = "",  $birthdate = "",  $postalCode = "",  $country = "",  $note = "",  $customFields = [])
     {
+
+
         $apiResponse = $this->_request('POST', "members", [
             'email' => $email,
             'gender' => $gender,

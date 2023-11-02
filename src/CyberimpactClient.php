@@ -10,6 +10,7 @@ use bernier154\PhpCyberimpact\ApiRequests\PingRequest;
 use bernier154\PhpCyberimpact\ApiRequests\TemplateRequests;
 use bernier154\PhpCyberimpact\ApiRequests\TokenRequest;
 use bernier154\PhpCyberimpact\Exceptions\ApiException;
+use bernier154\PhpCyberimpact\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 
 class CyberimpactClient
@@ -24,9 +25,10 @@ class CyberimpactClient
      * @param  string $apiToken The Cyberimpact api token
      * @return void
      */
-    public function __construct(string $apiToken)
+    public function __construct($args)
     {
-        $this->apiToken = $apiToken;
+        $args = $this->_defaultArgs($args, ['apiToken' => ''], ['apiToken' => 'required|string']);
+        $this->apiToken = $args['apiToken'];
     }
 
     /**
@@ -62,5 +64,41 @@ class CyberimpactClient
         }
 
         return json_decode($apiResponse->getBody());
+    }
+
+    private function _defaultArgs($args, $defaults, $validations = [])
+    {
+        $newArgs = [];
+        foreach ($defaults as $defaultKey => $defaultValue) {
+            $argValue = isset($args[$defaultKey]) ? $args[$defaultKey] : '__unset__';
+            $validation = isset($validations[$defaultKey]) ? explode('|', $validations[$defaultKey]) : null;
+
+            if ($validation !== null) {
+                if (in_array("required", $validation)) {
+                    if ($argValue == '__unset__') {
+                        throw (new ValidationException("Required value: $defaultKey"));
+                    }
+                }
+                if ($argValue !== '__unset__') {
+                    if (in_array("int", $validation)) {
+                        if (!is_int($argValue)) {
+                            throw (new ValidationException("Value must be an integer: $defaultKey"));
+                        }
+                    }
+                    if (in_array("string", $validation)) {
+                        if (!is_string($argValue)) {
+                            throw (new ValidationException("Value must be a string: $defaultKey"));
+                        }
+                    }
+                    if (in_array("non_nullable", $validation)) {
+                        if ($argValue === null) {
+                            throw (new ValidationException("Value must not be NULL: $defaultKey"));
+                        }
+                    }
+                }
+            }
+            $newArgs[$defaultKey] = $argValue !== '__unset__' ? $argValue : $defaultValue;
+        }
+        return $newArgs;
     }
 }
