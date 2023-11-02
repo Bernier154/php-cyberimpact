@@ -28,7 +28,7 @@ class Group
      * @param  bool $isDynamic if the group is dynamic
      * @return void
      */
-    public function __construct(int $id = null, string $title = "", bool $isPublic = true, int $membersCount = 0, int $mailingsCount = 0, string $createdOn = "", bool $isDynamic = false)
+    public function __construct($id = null,  $title = "",  $isPublic = true,  $membersCount = 0,  $mailingsCount = 0,  $createdOn = "",  $isDynamic = false)
     {
         $this->id = $id;
         $this->title = $title;

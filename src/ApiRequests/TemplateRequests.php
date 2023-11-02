@@ -17,7 +17,7 @@ trait TemplateRequests
      *                      Possible values: template_asc , template_desc , language_asc , language_desc , subject_asc , subject_desc , updated_asc , updated_desc , usage_asc , usage_desc , created_asc , created_desc . 
      * @return TemplateCollection
      */
-    public function retrieveTemplates(int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveTemplates($page = 1,  $limit = 20,  $sort = "")
     {
         $apiResponse = $this->_request('GET', "templates", [
             'page' => $page,
@@ -34,7 +34,7 @@ trait TemplateRequests
      * @param  int $id The template's numerical id
      * @return Template
      */
-    public function retrieveTemplate(int $id)
+    public function retrieveTemplate($id)
     {
         try {
             $apiResponse = $this->_request('GET', "templates/$id");
@@ -55,7 +55,7 @@ trait TemplateRequests
      * @param  string $bodyText The text body of the template. It is required that a template has at least either a html or a text body. Having both is recommended
      * @return Template
      */
-    public function createTemplate(string $title, string $bodyHtml = "", string $bodyText = "")
+    public function createTemplate($title,  $bodyHtml = "",  $bodyText = "")
     {
         $apiResponse = $this->_request('POST', "templates", [
             'title' => $title,
@@ -74,7 +74,7 @@ trait TemplateRequests
      * @param  string $bodyText The text body of the template. It is required that a template has at least either a html or a text body. Having both is recommended
      * @return Template
      */
-    public function replaceTemplate(int $id, string $title, string $bodyHtml = "", string $bodyText = "")
+    public function replaceTemplate($id,  $title,  $bodyHtml = "",  $bodyText = "")
     {
         $apiResponse = $this->_request('PUT', "templates/$id", [
             'title' => $title,

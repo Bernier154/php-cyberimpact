@@ -26,7 +26,7 @@ class MemberCollection
      *                      Possible values: group_asc , group_desc , nbmember_asc , nbmember_desc , type_asc , type_desc , nbnewsletter_asc , nbnewsletter_desc , date_asc , date_desc . 
      * @return void
      */
-    public function __construct(array $members, int $totalCount, int $page, int $limit, string $sort)
+    public function __construct($members,  $totalCount,  $page,  $limit,  $sort)
     {
         $this->members = $members;
         $this->totalCount = $totalCount;

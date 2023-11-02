@@ -28,7 +28,7 @@ class BatchDeleteMember
      * @param  array $successes an array of id of succesful addition
      * @return void
      */
-    public function __construct(int $id, string $batchType, object $batchJson, string $createdOn, string $status, object $result, array $successes)
+    public function __construct($id,  $batchType,  $batchJson,  $createdOn,  $status,  $result,  $successes)
     {
         $this->id = $id;
         $this->batchType = $batchType;

@@ -51,7 +51,7 @@ trait MemberRequests
      * @param  string|int $key Can be either the member's email address or its numerical Id
      * @return ?Member
      */
-    public function retrieveMember(mixed $key)
+    public function retrieveMember($key)
     {
         try {
             $apiResponse = $this->_request('GET', "members/$key");
@@ -78,7 +78,7 @@ trait MemberRequests
      * @param  string $updatedOnTo Date (end of the day) to which members have been last updated in the account (format: yyyy-mm-dd)
      * @return MemberCollection
      */
-    public function retrieveBouncedMembers(int $page = 1, int $limit = 20, string $sort = "", string $bouncedOnFrom = "", string $bouncedOnTo = "", string $updatedOnFrom = "", string $updatedOnTo = "")
+    public function retrieveBouncedMembers($page = 1,  $limit = 20,  $sort = "",  $bouncedOnFrom = "",  $bouncedOnTo = "",  $updatedOnFrom = "",  $updatedOnTo = "")
     {
         $apiResponse = $this->_request('GET', "members/bounced", [
             'page' => $page,
@@ -107,7 +107,7 @@ trait MemberRequests
      * @param  string $updatedOnTo Date (end of the day) to which members have been last updated in the account (format: yyyy-mm-dd)
      * @return MemberCollection
      */
-    public function retrieveUnsubscribedMembers(int $page = 1, int $limit = 20, string $sort = "", string $unsubscribedOnFrom = "", string $unsubscribedOnTo = "", string $updatedOnFrom = "", string $updatedOnTo = "")
+    public function retrieveUnsubscribedMembers($page = 1,  $limit = 20,  $sort = "",  $unsubscribedOnFrom = "",  $unsubscribedOnTo = "",  $updatedOnFrom = "",  $updatedOnTo = "")
     {
         $apiResponse = $this->_request('GET', "members/unsubscribed", [
             'page' => $page,
@@ -128,7 +128,7 @@ trait MemberRequests
      * @param  string $email The unsubscribed member's email address
      * @return ?Member
      */
-    public function retrieveUnsubscribedMember(string $email)
+    public function retrieveUnsubscribedMember($email)
     {
         try {
             $apiResponse = $this->_request('GET', "members/unsubscribed/$email");
@@ -147,7 +147,7 @@ trait MemberRequests
      * @param  string|int $key Can be either the member's email address or its numerical Id
      * @return Member
      */
-    public function unsubscribeMember(mixed $key)
+    public function unsubscribeMember($key)
     {
         $apiResponse = $this->_request('POST', "members/unsubscribed/$key");
         return Member::fromJSON($apiResponse);
@@ -172,7 +172,7 @@ trait MemberRequests
      * @param  array $customFields Any non-confidential data can be stored here. The key is a string containing the ID of the field
      * @return Member
      */
-    public function addMember(string $email, string $gender = "", string $groups = "", string $firstname = "", string $lastname = "", string $company = "", string $language = "", string $birthdate = "", string $postalCode = "", string $country = "", string $note = "", array $customFields = [])
+    public function addMember($email,  $gender = "",  $groups = "",  $firstname = "",  $lastname = "",  $company = "",  $language = "",  $birthdate = "",  $postalCode = "",  $country = "",  $note = "",  $customFields = [])
     {
         $apiResponse = $this->_request('POST', "members", [
             'email' => $email,
@@ -209,7 +209,7 @@ trait MemberRequests
      * @param  array $customFields Any non-confidential data can be stored here. The key is a string containing the ID of the field
      * @return Member
      */
-    public function replaceMember(mixed $key, string $email, string $gender = "", string $groups = "", string $firstname = "", string $lastname = "", string $company = "", string $language = "", string $birthdate = "", string $postalCode = "", string $country = "", string $note = "", array $customFields = [])
+    public function replaceMember($key,  $email,  $gender = "",  $groups = "",  $firstname = "",  $lastname = "",  $company = "",  $language = "",  $birthdate = "",  $postalCode = "",  $country = "",  $note = "",  $customFields = [])
     {
         $apiResponse = $this->_request('PUT', "members/$key", [
             'email' => $email,
@@ -246,7 +246,7 @@ trait MemberRequests
      * @param  array $customFields Any non-confidential data can be stored here. The key is a string containing the ID of the field
      * @return Member
      */
-    public function editMember(mixed $key, string $email, string $gender = "", string $groups = "", string $firstname = "", string $lastname = "", string $company = "", string $language = "", string $birthdate = "", string $postalCode = "", string $country = "", string $note = "", array $customFields = [])
+    public function editMember($key,  $email,  $gender = "",  $groups = "",  $firstname = "",  $lastname = "",  $company = "",  $language = "",  $birthdate = "",  $postalCode = "",  $country = "", string $note = "", array $customFields = [])
     {
         $apiResponse = $this->_request('PATCH', "members/$key", [
             'email' => $email,
@@ -271,7 +271,7 @@ trait MemberRequests
      * @param  string|int $key Can be either the member's email address or its numerical Id
      * @return void
      */
-    public function deleteMember(mixed $key)
+    public function deleteMember($key)
     {
         try {
             $apiResponse = $this->_request('DELETE', "members/$key");
@@ -294,7 +294,7 @@ trait MemberRequests
      *                      Possible values: title_asc , title_desc , created_asc , created_desc . 
      * @return GroupCollection
      */
-    public function retrieveMemberGroups(mixed $key, int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveMemberGroups($key,  $page = 1,  $limit = 20,  $sort = "")
     {
         $apiResponse = $this->_request('GET', "members/$key/groups", [
             'page' => $page,
@@ -314,7 +314,7 @@ trait MemberRequests
      *                      Possible values: date_sent_asc , date_sent_desc , date_opened_asc , date_opened_desc . 
      * @return MailingCollection
      */
-    public function retrieveMemberMailings(mixed $key, int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveMemberMailings($key,  $page = 1,  $limit = 20,  $sort = "")
     {
         $apiResponse = $this->_request('GET', "members/$key/mailings", [
             'page' => $page,
@@ -331,7 +331,7 @@ trait MemberRequests
      * @param  string $groups A csv list of the groups that the member will become part of
      * @return GroupCollection List of the member's subscriptions
      */
-    public function addGroupsToMember(mixed $key, string $groups)
+    public function addGroupsToMember($key,  $groups)
     {
         $apiResponse = $this->_request('POST', "members/$key/groups", [
             'groups' => $groups
@@ -346,7 +346,7 @@ trait MemberRequests
      * @param  string $groups A csv list of the groups that the member will become part of
      * @return GroupCollection List of the member's groups
      */
-    public function replaceMemberGroups(mixed $key, string $groups)
+    public function replaceMemberGroups($key,  $groups)
     {
         $apiResponse = $this->_request('PUT', "members/$key/groups", [
             'groups' => $groups
@@ -361,7 +361,7 @@ trait MemberRequests
      * @param  int $groupId Numerical Id of the group to remove from the member's groups list
      * @return object Status of the subscription to the specified group.
      */
-    public function removeGroupMember(mixed $key, int $groupId)
+    public function removeGroupMember($key,  $groupId)
     {
         try {
             $apiResponse = $this->_request('DELETE', "members/$key/groups/$groupId");
@@ -394,7 +394,7 @@ trait MemberRequests
      * @param  array $customFields Any non-confidential data can be stored here. The key is a string containing the ID of the field
      * @return object The id of the Opt-in request and it's status.
      */
-    public function optInMember(string $email, string $gender = "", string $groups = "", string $firstname = "", string $lastname = "", string $company = "", string $language = "", string $birthdate = "", string $postalCode = "", string $country = "", string $note = "", string $optinConfirmUrl = "", array $customFields = [])
+    public function optInMember($email,  $gender = "",  $groups = "",  $firstname = "",  $lastname = "",  $company = "",  $language = "",  $birthdate = "",  $postalCode = "",  $country = "",  $note = "",  $optinConfirmUrl = "",  $customFields = [])
     {
         $apiResponse = $this->_request('POST', "members/optins", [
             'email' => $email,
@@ -408,7 +408,8 @@ trait MemberRequests
             'postalCode' => $postalCode,
             'country' => $country,
             'note' => $note,
-            'customFields' => $customFields
+            'customFields' => $customFields,
+            'optinConfirmUrl' => $optinConfirmUrl
         ]);
         return $apiResponse;
     }
@@ -419,7 +420,7 @@ trait MemberRequests
      * @param  string|int $key Can be either the member's email address or its numerical Id
      * @return ConsentDetails
      */
-    public function retrieveMemberConsentDetails(mixed $key)
+    public function retrieveMemberConsentDetails($key)
     {
         $apiResponse = $this->_request('GET', "members/$key/consent");
         return ConsentDetails::fromJSON($apiResponse);
@@ -435,7 +436,7 @@ trait MemberRequests
      * @param  string $consentProof The consent proof description
      * @return ConsentDetails
      */
-    public function setMemberConsent(mixed $key, string $relationType, string $consentDate, string $consentProof)
+    public function setMemberConsent($key,  $relationType,  $consentDate,  $consentProof)
     {
         $apiResponse = $this->_request('PUT', "members/$key/consent", [
             'relationType' => $relationType,

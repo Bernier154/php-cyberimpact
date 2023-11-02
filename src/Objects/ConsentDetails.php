@@ -13,7 +13,7 @@ class ConsentDetails
     public $consentExpiration;
     public $consentProof;
 
-    public function __construct(string $consentType, string $relationType, string $consentDate, string $consentExpiration, string $consentProof)
+    public function __construct($consentType,  $relationType,  $consentDate,  $consentExpiration,  $consentProof)
     {
         $this->consentType = $consentType;
         $this->relationType = $relationType;

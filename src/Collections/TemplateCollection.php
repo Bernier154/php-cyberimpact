@@ -26,7 +26,7 @@ class TemplateCollection
      *                      Possible values: template_asc , template_desc , language_asc , language_desc , subject_asc , subject_desc , updated_asc , updated_desc , usage_asc , usage_desc , created_asc , created_desc . 
      * @return void
      */
-    public function __construct(array $templates, int $totalCount, int $page, int $limit, string $sort)
+    public function __construct($templates,  $totalCount,  $page,  $limit,  $sort)
     {
         $this->templates = $templates;
         $this->totalCount = $totalCount;

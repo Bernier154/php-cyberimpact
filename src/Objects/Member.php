@@ -28,24 +28,24 @@ class Member
     public $customFields;
 
     public function __construct(
-        int $id = null,
-        string $firstname = "",
-        string $lastname = "",
-        string $company = "",
-        string $email = "",
-        string $gender = "",
-        string $language = "",
-        string $joinedOn = "",
-        string $updatedOn = "",
-        string $consentType = "",
-        string $postalCode = "",
-        string $country = "",
-        string $note = "",
-        string $birthdate = "",
-        int $mailingsReceived = 0,
-        int $mailingsOpened = 0,
-        int $mailingsClicked = 0,
-        array $customFields = []
+        $id = null,
+        $firstname = "",
+        $lastname = "",
+        $company = "",
+        $email = "",
+        $gender = "",
+        $language = "",
+        $joinedOn = "",
+        $updatedOn = "",
+        $consentType = "",
+        $postalCode = "",
+        $country = "",
+        $note = "",
+        $birthdate = "",
+        $mailingsReceived = 0,
+        $mailingsOpened = 0,
+        $mailingsClicked = 0,
+        $customFields = []
     ) {
         $this->id = $id;
         $this->firstname = $firstname;

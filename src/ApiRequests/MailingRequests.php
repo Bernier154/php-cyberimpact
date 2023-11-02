@@ -19,7 +19,7 @@ trait MailingRequests
      *                      Possible values: language_asc , language_desc , subject_asc , subject_desc , recipients_asc , recipients_desc , date_asc , date_desc . 
      * @return MailingCollection
      */
-    public function retrieveSentMailings(int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveSentMailings($page = 1,  $limit = 20,  $sort = "")
     {
         $apiResponse = $this->_request('GET', "mailings/sent", [
             'page' => $page,
@@ -41,7 +41,7 @@ trait MailingRequests
 
      * @return MemberCollection
      */
-    public function retrieveMailingHardBounces(int $id, int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveMailingHardBounces($id,  $page = 1,  $limit = 20,  $sort = "")
     {
         $apiResponse = $this->_request('GET', "mailings/$id/hard-bounces", [
             'page' => $page,
@@ -60,7 +60,7 @@ trait MailingRequests
      *                      Possible values: language_asc , language_desc , subject_asc , subject_desc , recipients_asc , recipients_desc , date_asc , date_desc . 
      * @return MailingCollection
      */
-    public function retrieveScheduledMailings(int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveScheduledMailings($page = 1,  $limit = 20,  $sort = "")
     {
         $apiResponse = $this->_request('GET', "mailings/scheduled", [
             'page' => $page,
@@ -77,7 +77,7 @@ trait MailingRequests
      * @param  int $id The mailing's numerical id
      * @return Mailing
      */
-    public function retrieveMailing(int $id)
+    public function retrieveMailing($id)
     {
         try {
             $apiResponse = $this->_request('GET', "mailings/$id");
@@ -107,7 +107,7 @@ trait MailingRequests
      * @param  int $updateProfileForm The update profile form ID used at the bottom of the mailing
      * @return Mailing
      */
-    public function createMailing(string $subject, string $language, string $groups, string $sendAt, string $replyTo = "", string $fromName = "", string $mailFrom = "", string $bodyHtml = "", string $bodyText = "", bool $googleAnalytics = false, string $googleAnalyticsCampaign = "", int $updateProfileForm = null)
+    public function createMailing($subject,  $language,  $groups,  $sendAt,  $replyTo = "",  $fromName = "",  $mailFrom = "",  $bodyHtml = "",  $bodyText = "",  $googleAnalytics = false,  $googleAnalyticsCampaign = "",  $updateProfileForm = null)
     {
         $apiResponse = $this->_request('POST', "mailings", [
             'subject' => $subject,

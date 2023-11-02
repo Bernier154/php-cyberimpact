@@ -14,7 +14,7 @@ class Ping
     const SUCCESS = 'success';
     const FAILURE = 'failure';
 
-    public function __construct(string $ping, string $username = null, string $email = null, string $account = null)
+    public function __construct($ping,  $username = null,  $email = null,  $account = null)
     {
         $this->ping = $ping;
         $this->username = $username;

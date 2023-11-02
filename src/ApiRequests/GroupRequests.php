@@ -18,7 +18,7 @@ trait GroupRequests
      *                      Possible values: group_asc , group_desc , nbmember_asc , nbmember_desc , type_asc , type_desc , nbnewsletter_asc , nbnewsletter_desc , date_asc , date_desc . 
      * @return void
      */
-    public function retrieveGroups(int $page = 1, int $limit = 20, string $sort = "")
+    public function retrieveGroups($page = 1, $limit = 20, $sort = "")
     {
         $apiResponse = $this->_request('GET', 'groups', [
             'page' => $page,
@@ -34,7 +34,7 @@ trait GroupRequests
      * @param  int $id The group numerical id
      * @return ?Group null if not found
      */
-    public function retrieveGroup(int $id)
+    public function retrieveGroup($id)
     {
         try {
             $apiResponse = $this->_request('GET', "groups/$id");
@@ -61,7 +61,7 @@ trait GroupRequests
      * @param  string $updatedOnTo Date (end of the day) to which members have been last updated in the account (format: yyyy-mm-dd)
      * @return void
      */
-    public function retrieveGroupMembers(int $id, int $page = 1, int $limit = 20, string $sort = "", string $joinedOnFrom = "", string $joinedOnTo = "", string $updatedOnFrom = "", string $updatedOnTo = "")
+    public function retrieveGroupMembers($id, $page = 1, $limit = 20, $sort = "", $joinedOnFrom = "", $joinedOnTo = "", $updatedOnFrom = "", $updatedOnTo = "")
     {
         $apiResponse = $this->_request('GET', "groups/$id/members", [
             'page' => $page,
@@ -94,7 +94,7 @@ trait GroupRequests
      * @param  bool $isPublic Should the new group be a public group or not. See our documentation for the difference between the two types: http://support.cyberimpact.com/articles/63?l=en_ca#publicvsprivategroup
      * @return Group The newly created group
      */
-    public function addGroup(string $title, bool $isPublic = true)
+    public function addGroup($title,  $isPublic = true)
     {
         $apiResponse = $this->_request('POST', "groups", [
             "title" => $title,
@@ -110,7 +110,7 @@ trait GroupRequests
      * @param  bool $isPublic Should the group be a public group or not. See our documentation for the difference between the two types: http://support.cyberimpact.com/articles/63?l=en_ca#publicvsprivategroup
      * @return Group The modified group
      */
-    public function replaceGroup(int $id, string $title, bool $isPublic = true)
+    public function replaceGroup($id,  $title,  $isPublic = true)
     {
         $apiResponse = $this->_request('PUT', "groups/$id", [
             "title" => $title,
@@ -126,7 +126,7 @@ trait GroupRequests
      * @param  bool $isPublic Should the group be a public group or not. See our documentation for the difference between the two types: http://support.cyberimpact.com/articles/63?l=en_ca#publicvsprivategroup
      * @return Group The modified group
      */
-    public function editGroup(int $id, string $title, bool $isPublic = true)
+    public function editGroup($id,  $title,  $isPublic = true)
     {
         $apiResponse = $this->_request('PATCH', "groups/$id", [
             "title" => $title,
@@ -141,7 +141,7 @@ trait GroupRequests
      * @param  int $id The group's numerical id
      * @return object The id of the group and it's status.
      */
-    public function deleteGroup(int $id)
+    public function deleteGroup($id)
     {
         try {
             $apiResponse = $this->_request('DELETE', "groups/$id");

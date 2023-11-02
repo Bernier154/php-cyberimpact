@@ -20,7 +20,7 @@ class Token
      * @param  string $expiration The expiration date of the token
      * @return void
      */
-    public function __construct(string $tokenUniqueId, string $token, string $expiration)
+    public function __construct($tokenUniqueId,  $token,  $expiration)
     {
         $this->tokenUniqueId = $tokenUniqueId;
         $this->token = $token;

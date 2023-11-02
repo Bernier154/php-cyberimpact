@@ -26,7 +26,7 @@ class Template
      * @param  string $bodyText
      * @return void
      */
-    public function __construct(int $id = null, string $title = "", string $createdOn = "", string $updatedOn = "", string $bodyHtml = "", string $bodyText = "")
+    public function __construct($id = null,  $title = "",  $createdOn = "",  $updatedOn = "",  $bodyHtml = "",  $bodyText = "")
     {
         $this->id = $id;
         $this->title = $title;

@@ -37,7 +37,7 @@ class CyberimpactClient
      * @param  ?array $data If applicable, the JSON or URLParams of the request as an associative array.
      * @return object
      */
-    private function _request(string $method, string $route, array $data = null)
+    private function _request($method,  $route,  $data = null)
     {
         $client = new Client();
         $urlParams = "";

@@ -9,7 +9,7 @@ use bernier154\PhpCyberimpact\Objects\BatchUnsubscribe;
 
 trait BatchRequests
 {
-    public function retrieveBatch(int $id, bool $showErrorDetails = false)
+    public function retrieveBatch($id, $showErrorDetails = false)
     {
         try {
             $apiResponse = $this->_request('GET', "batches/$id", [
@@ -66,7 +66,7 @@ trait BatchRequests
      * @param  array $ids ids or email of the members to unsubscribe
      * @return BatchDeleteMember
      */
-    public function createDeleteMemberBatch(array $ids)
+    public function createDeleteMemberBatch($ids)
     {
         $apiResponse = $this->_request('POST', "batches", [
             'batchType' => 'deleteMembers',
@@ -81,7 +81,7 @@ trait BatchRequests
      * @param  array $ids ids or email of the members to unsubscribe
      * @return BatchUnsubscribe
      */
-    public function createUnsubscribeBatch(array $ids)
+    public function createUnsubscribeBatch($ids)
     {
         $apiResponse = $this->_request('POST', "batches", [
             'batchType' => 'unsubscribe',

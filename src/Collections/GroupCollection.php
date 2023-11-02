@@ -26,7 +26,7 @@ class GroupCollection
      *                      Possible values: group_asc , group_desc , nbmember_asc , nbmember_desc , type_asc , type_desc , nbnewsletter_asc , nbnewsletter_desc , date_asc , date_desc . 
      * @return void
      */
-    public function __construct(array $groups, int $totalCount, int $page, int $limit, string $sort)
+    public function __construct($groups,  $totalCount,  $page,  $limit,  $sort)
     {
         $this->groups = $groups;
         $this->totalCount = $totalCount;
@@ -48,7 +48,7 @@ class GroupCollection
             $json->totalCount ?? count($json->groups),
             $json->page ?? 0,
             $json->limit ?? 0,
-            $json->sort ?? '',
+            $json->sort ?? ''
         );
     }
 }

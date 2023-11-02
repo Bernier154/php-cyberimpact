@@ -26,7 +26,7 @@ class MailingCollection
      *                      Possible values: date_sent_asc , date_sent_desc , date_opened_asc , date_opened_desc .  
      * @return void
      */
-    public function __construct(array $mailings, int $totalCount, int $page, int $limit, string $sort)
+    public function __construct($mailings,  $totalCount,  $page,  $limit,  $sort)
     {
         $this->mailings = $mailings;
         $this->totalCount = $totalCount;

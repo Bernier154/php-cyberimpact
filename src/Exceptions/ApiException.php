@@ -6,7 +6,7 @@ namespace bernier154\PhpCyberimpact\Exceptions;
 class ApiException extends \Exception
 {
     private $apiErrors;
-    public function __construct(string $message, int $code = 0, \Throwable $previous = null, array $apiErrors = [])
+    public function __construct($message,  $code = 0,  $previous = null,  $apiErrors = [])
     {
         $this->apiErrors = $apiErrors;
         parent::__construct($message, $code, $previous);
