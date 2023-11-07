@@ -51,8 +51,8 @@ class Group
             $json->id,
             $json->title,
             $json->isPublic,
-            $json->membersCount,
-            $json->mailingsCount,
+            $json->membersCount ?? 0,
+            $json->mailingsCount ?? 0,
             $json->createdOn,
             $json->isDynamic
         );
